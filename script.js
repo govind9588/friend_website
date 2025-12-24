@@ -1079,10 +1079,426 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
+// ============== NEW CHAOS FEATURES ==============
+
+// SLOT MACHINE
+const slotSymbols = [
+  "🍎",
+  "🍋",
+  "🍒",
+  "💎",
+  "7️⃣",
+  "🎰",
+  "💰",
+  "⭐",
+  "🔔",
+  "🍀",
+];
+const slotResults = [
+  "So close! But not really.",
+  "You lost! Shocking, right?",
+  "Better luck never!",
+  "Jackpot! Just kidding 😂",
+  "Almost won! (No you didn't)",
+  "The house always wins!",
+  "Try again! (It won't help)",
+  "You're cursed! 🎃",
+];
+
+function setupSlotMachine() {
+  const spinBtn = document.getElementById("slotSpinBtn");
+  const slot1 = document.getElementById("slot1");
+  const slot2 = document.getElementById("slot2");
+  const slot3 = document.getElementById("slot3");
+  const result = document.getElementById("slotResult");
+
+  if (!spinBtn) return;
+
+  spinBtn.addEventListener("click", () => {
+    incrementClick();
+    playClickSound();
+
+    // Start spinning
+    [slot1, slot2, slot3].forEach((slot) => slot.classList.add("spinning"));
+    spinBtn.disabled = true;
+    spinBtn.textContent = "🎰 SPINNING...";
+
+    // Spin animation
+    let spins = 0;
+    const spinInterval = setInterval(() => {
+      slot1.textContent =
+        slotSymbols[Math.floor(Math.random() * slotSymbols.length)];
+      slot2.textContent =
+        slotSymbols[Math.floor(Math.random() * slotSymbols.length)];
+      slot3.textContent =
+        slotSymbols[Math.floor(Math.random() * slotSymbols.length)];
+      spins++;
+
+      if (spins > 20) {
+        clearInterval(spinInterval);
+        [slot1, slot2, slot3].forEach((slot) =>
+          slot.classList.remove("spinning")
+        );
+        spinBtn.disabled = false;
+        spinBtn.textContent = "🎰 SPIN!";
+
+        // Always lose (almost)
+        const finalSymbols = [
+          slotSymbols[Math.floor(Math.random() * slotSymbols.length)],
+          slotSymbols[Math.floor(Math.random() * slotSymbols.length)],
+          slotSymbols[Math.floor(Math.random() * slotSymbols.length)],
+        ];
+
+        // Make sure they never match
+        if (
+          finalSymbols[0] === finalSymbols[1] &&
+          finalSymbols[1] === finalSymbols[2]
+        ) {
+          finalSymbols[2] =
+            slotSymbols[
+              (slotSymbols.indexOf(finalSymbols[2]) + 1) % slotSymbols.length
+            ];
+        }
+
+        slot1.textContent = finalSymbols[0];
+        slot2.textContent = finalSymbols[1];
+        slot3.textContent = finalSymbols[2];
+
+        result.textContent =
+          slotResults[Math.floor(Math.random() * slotResults.length)];
+
+        // Random chaos after spin
+        if (Math.random() < 0.3) {
+          setTimeout(showRandomError, 500);
+        }
+
+        showAchievement("🎰 Gambler's Ruin! You wasted a spin!");
+      }
+    }, 100);
+  });
+}
+
+// BSOD - Blue Screen of Death
+function showBSOD() {
+  const bsod = document.getElementById("bsodScreen");
+  const progress = document.getElementById("bsodProgress");
+
+  if (!bsod) return;
+
+  bsod.classList.add("active");
+  playErrorSound();
+
+  let percent = 0;
+  const progressInterval = setInterval(() => {
+    percent += Math.floor(Math.random() * 5) + 1;
+    if (percent > 100) percent = 100;
+    progress.textContent = percent;
+
+    if (percent >= 100) {
+      clearInterval(progressInterval);
+    }
+  }, 200);
+
+  bsod.addEventListener(
+    "click",
+    () => {
+      bsod.classList.remove("active");
+      showAchievement("💻 BSOD Survivor! You didn't panic!");
+    },
+    { once: true }
+  );
+}
+
+// Trigger BSOD randomly
+function setupBSOD() {
+  // Random chance to show BSOD after certain interactions
+  setInterval(() => {
+    if (
+      state.currentUser &&
+      state.interactionCount > 20 &&
+      Math.random() < 0.05
+    ) {
+      showBSOD();
+    }
+  }, 30000);
+}
+
+// FLASHLIGHT MODE
+let flashlightActive = false;
+
+function setupFlashlight() {
+  const btn = document.getElementById("flashlightBtn");
+  const overlay = document.getElementById("flashlightOverlay");
+
+  if (!btn || !overlay) return;
+
+  btn.addEventListener("click", () => {
+    incrementClick();
+    flashlightActive = !flashlightActive;
+    overlay.classList.toggle("active", flashlightActive);
+
+    if (flashlightActive) {
+      btn.textContent = "🔦 Deactivate Flashlight";
+      showAchievement("🔦 Darkness Mode! Good luck seeing!");
+      document.body.classList.add("tilted"); // Also add screen tilt for extra chaos
+    } else {
+      btn.textContent = "🔦 Activate Flashlight";
+      document.body.classList.remove("tilted");
+    }
+  });
+
+  // Follow mouse for flashlight effect
+  document.addEventListener("mousemove", (e) => {
+    if (flashlightActive) {
+      overlay.style.setProperty("--x", e.clientX + "px");
+      overlay.style.setProperty("--y", e.clientY + "px");
+    }
+  });
+}
+
+// FAKE PASSWORD
+const wrongPasswordResponses = [
+  "Wrong! Try again 😈",
+  "Nope! That's not it!",
+  "Incorrect! (There is no correct one)",
+  "Access Denied! Forever!",
+  "Nice try! But no.",
+  "Password rejected by the universe!",
+  "Error: This password doesn't exist!",
+  "Ha! You thought that would work?",
+  "That password hurt my feelings 😢",
+  "Govind says: No access for you!",
+];
+
+function setupFakePassword() {
+  const btn = document.getElementById("passwordBtn");
+  const input = document.getElementById("fakePassword");
+  const hint = document.getElementById("passwordHint");
+
+  if (!btn || !input) return;
+
+  btn.addEventListener("click", () => {
+    incrementClick();
+    playErrorSound();
+    shakeScreen();
+
+    hint.textContent =
+      wrongPasswordResponses[
+        Math.floor(Math.random() * wrongPasswordResponses.length)
+      ];
+    hint.style.color = "#ff4444";
+    input.value = "";
+
+    // Random punishment
+    if (Math.random() < 0.3) {
+      showFakeNotification(
+        "🔐 Security Alert!",
+        "Too many failed attempts. Webcam activated! 📷"
+      );
+    }
+
+    showAchievement("🔐 Access Denied! There is no password!");
+  });
+
+  // Keyboard chaos - add random emojis while typing
+  input.addEventListener("input", (e) => {
+    if (Math.random() < 0.2) {
+      const emojis = ["😈", "🤡", "💀", "🎭", "🔥", "⚡", "🌈"];
+      e.target.value += emojis[Math.floor(Math.random() * emojis.length)];
+    }
+  });
+}
+
+// RICK ROLL
+function setupRickRoll() {
+  const btn = document.getElementById("rickrollBtn");
+
+  if (!btn) return;
+
+  btn.addEventListener("click", () => {
+    incrementClick();
+    playSuccessSound();
+
+    showPopup(
+      "🎵 Loading your free music...",
+      "Get ready for the best song ever!",
+      () => {
+        // Open Rick Roll in new tab
+        window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ", "_blank");
+        showAchievement("🎵 RICK ROLLED! You fell for it!");
+
+        setTimeout(() => {
+          showFakeNotification(
+            "🎶 Now Playing:",
+            "Never Gonna Give You Up - Rick Astley"
+          );
+        }, 1000);
+      }
+    );
+  });
+}
+
+// FAKE NOTIFICATIONS
+const fakeNotifications = [
+  {
+    icon: "📸",
+    title: "Screenshot Captured!",
+    message: "We took a photo of your face 📷",
+  },
+  {
+    icon: "🔔",
+    title: "New Message!",
+    message: "Govind says: Having fun yet? 😈",
+  },
+  { icon: "⚠️", title: "Warning!", message: "Your patience is running low!" },
+  {
+    icon: "📱",
+    title: "System Alert!",
+    message: "Too much clicking detected!",
+  },
+  {
+    icon: "🎮",
+    title: "Achievement Nearby!",
+    message: "Keep clicking for nothing!",
+  },
+  {
+    icon: "💾",
+    title: "Auto-Save Failed!",
+    message: "Your progress is gone forever!",
+  },
+  {
+    icon: "🔋",
+    title: "Battery Low!",
+    message: "Just kidding, your battery is fine.",
+  },
+  { icon: "📧", title: "New Email!", message: "Subject: You've been pranked!" },
+];
+
+function showFakeNotification(title, message) {
+  const notification = document.getElementById("fakeNotification");
+  const titleEl = document.getElementById("notificationTitle");
+  const messageEl = document.getElementById("notificationMessage");
+  const closeBtn = document.getElementById("notificationClose");
+
+  if (!notification) return;
+
+  titleEl.textContent = title || "Notification";
+  messageEl.textContent = message || "Something happened!";
+
+  notification.classList.add("active");
+  playClickSound();
+
+  // Auto-hide after 5 seconds
+  setTimeout(() => {
+    notification.classList.remove("active");
+  }, 5000);
+
+  closeBtn.onclick = () => {
+    notification.classList.remove("active");
+    incrementClick();
+  };
+}
+
+function setupRandomNotifications() {
+  setInterval(() => {
+    if (state.currentUser && Math.random() < 0.1) {
+      const notif =
+        fakeNotifications[Math.floor(Math.random() * fakeNotifications.length)];
+      showFakeNotification(notif.title, notif.message);
+    }
+  }, 20000);
+}
+
+// CURSOR INVERSION
+let cursorInverted = false;
+let invertedCursorDot = null;
+
+function setupCursorInversion() {
+  // Create inverted cursor dot
+  invertedCursorDot = document.createElement("div");
+  invertedCursorDot.className = "inverted-cursor-dot";
+  document.body.appendChild(invertedCursorDot);
+
+  // Random chance to invert cursor
+  setInterval(() => {
+    if (
+      state.currentUser &&
+      state.interactionCount > 30 &&
+      Math.random() < 0.03
+    ) {
+      toggleCursorInversion();
+    }
+  }, 15000);
+}
+
+function toggleCursorInversion() {
+  cursorInverted = !cursorInverted;
+  document.body.classList.toggle("inverted-cursor", cursorInverted);
+
+  if (cursorInverted) {
+    showAchievement("🔄 Cursor Inverted! Good luck navigating!");
+    playAnnoyingSound();
+
+    // Auto-disable after 10 seconds
+    setTimeout(() => {
+      cursorInverted = false;
+      document.body.classList.remove("inverted-cursor");
+    }, 10000);
+  }
+}
+
+// Inverted mouse movement
+document.addEventListener("mousemove", (e) => {
+  if (cursorInverted && invertedCursorDot) {
+    // Move cursor to opposite position
+    const invertedX = window.innerWidth - e.clientX;
+    const invertedY = window.innerHeight - e.clientY;
+    invertedCursorDot.style.left = invertedX + "px";
+    invertedCursorDot.style.top = invertedY + "px";
+  }
+});
+
+// SCREEN TILT
+function setupScreenTilt() {
+  // Random screen tilt
+  setInterval(() => {
+    if (
+      state.currentUser &&
+      state.interactionCount > 40 &&
+      Math.random() < 0.05
+    ) {
+      document.body.classList.add("tilted");
+      showAchievement("🌀 Screen Tilting! Hold on tight!");
+
+      setTimeout(() => {
+        document.body.classList.remove("tilted");
+      }, 15000);
+    }
+  }, 25000);
+}
+
+// Initialize all new features
+function initNewFeatures() {
+  setupSlotMachine();
+  setupBSOD();
+  setupFlashlight();
+  setupFakePassword();
+  setupRickRoll();
+  setupRandomNotifications();
+  setupCursorInversion();
+  setupScreenTilt();
+}
+
+// ============== ORIGINAL INIT ==============
+
 // Initialize on DOM ready
-document.addEventListener("DOMContentLoaded", init);
+document.addEventListener("DOMContentLoaded", () => {
+  init();
+  initNewFeatures();
+});
 
 // Start immediately if DOM is already ready
 if (document.readyState !== "loading") {
   init();
+  initNewFeatures();
 }

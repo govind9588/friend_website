@@ -161,6 +161,56 @@
         </form>
       </section>
 
+      <!-- Slot Machine Section -->
+      <section class="section slot-section">
+        <h2>🎰 Try Your Luck!</h2>
+        <p>Spin to win amazing prizes! (Spoiler: You won't)</p>
+        <div class="slot-machine">
+          <div class="slot-display">
+            <span class="slot-reel" id="slot1">🎲</span>
+            <span class="slot-reel" id="slot2">🎲</span>
+            <span class="slot-reel" id="slot3">🎲</span>
+          </div>
+          <button class="slot-spin-btn" id="slotSpinBtn">🎰 SPIN!</button>
+        </div>
+        <p class="slot-result" id="slotResult"></p>
+      </section>
+
+      <!-- Flashlight Mode Section -->
+      <section class="section flashlight-section">
+        <h2>🔦 Secret Mode</h2>
+        <p>Click to reveal hidden content... or not.</p>
+        <button class="flashlight-btn" id="flashlightBtn">
+          🔦 Activate Flashlight
+        </button>
+      </section>
+
+      <!-- Fake Password Section -->
+      <section class="section password-section">
+        <h2>🔐 VIP Access</h2>
+        <p>Enter the secret password to unlock exclusive content!</p>
+        <div class="password-form">
+          <input
+            type="password"
+            id="fakePassword"
+            placeholder="Enter password..."
+          />
+          <button class="password-btn" id="passwordBtn">Unlock 🔓</button>
+        </div>
+        <p class="password-hint" id="passwordHint">
+          Hint: There is no correct password 😈
+        </p>
+      </section>
+
+      <!-- Rick Roll Button (Hidden) -->
+      <section class="section rickroll-section">
+        <h2>🎵 Free Music!</h2>
+        <p>Click for a surprise song!</p>
+        <button class="rickroll-btn" id="rickrollBtn">
+          🎁 Claim Free Music
+        </button>
+      </section>
+
       <!-- Rage Quit Section -->
       <section class="section rage-section">
         <h2>😤 Had Enough?</h2>
@@ -197,6 +247,39 @@
         <button class="error-btn" id="errorBtn">OK (this won't help)</button>
       </div>
     </div>
+
+    <!-- BSOD Screen -->
+    <div class="bsod-screen" id="bsodScreen">
+      <div class="bsod-content">
+        <div class="bsod-sad">:(</div>
+        <h1>Your PC ran into a problem</h1>
+        <p>Just kidding! This is a prank by Govind 😂</p>
+        <p class="bsod-error">Error Code: FRIEND_GOT_TROLLED</p>
+        <div class="bsod-progress">
+          <span id="bsodProgress">0</span>% complete
+        </div>
+        <p class="bsod-small">
+          We're just messing with you. Click anywhere to continue.
+        </p>
+      </div>
+    </div>
+
+    <!-- Fake Notification -->
+    <div class="fake-notification" id="fakeNotification">
+      <div class="notification-icon">📸</div>
+      <div class="notification-content">
+        <div class="notification-title" id="notificationTitle">
+          Screenshot Captured!
+        </div>
+        <div class="notification-message" id="notificationMessage">
+          We took a photo of your face 📷
+        </div>
+      </div>
+      <button class="notification-close" id="notificationClose">×</button>
+    </div>
+
+    <!-- Flashlight Overlay -->
+    <div class="flashlight-overlay" id="flashlightOverlay"></div>
 
     <!-- Victory Screen -->
     <div class="victory-screen" id="victoryScreen">
