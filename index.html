@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🎉 Totally Normal Website 🎉</title>
+    <meta
+      name="description"
+      content="A completely normal, absolutely not frustrating website. Trust us."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@400;700&family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Background particles -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Mute Button (Always Visible) -->
+    <button class="mute-btn" id="muteBtn" title="Toggle Sound">🔊</button>
+
+    <!-- Stats Panel -->
+    <div class="stats-panel" id="statsPanel">
+      <div class="stat">Clicks: <span id="clickCount">0</span></div>
+      <div class="stat">Patience: <span id="patienceLevel">∞</span></div>
+      <div class="stat">Frustration: <span id="frustrationLevel">0%</span></div>
+    </div>
+
+    <!-- Cursor Follower Tooltip -->
+    <div class="cursor-tooltip" id="cursorTooltip">I'm following you 👀</div>
+
+    <!-- Login Screen -->
+    <div class="login-screen" id="loginScreen">
+      <div class="login-card">
+        <h1 class="login-title">🎭 Welcome to Paradise 🎭</h1>
+        <p class="login-subtitle">Select your identity to enter...</p>
+
+        <div class="login-buttons">
+          <button class="login-btn rohit-btn" id="rohitLogin" data-user="rohit">
+            <span class="login-icon">🧔</span>
+            <span class="login-name">Rohit Nehra</span>
+            <span class="login-hint">The Chosen One</span>
+          </button>
+
+          <button class="login-btn ankit-btn" id="ankitLogin" data-user="ankit">
+            <span class="login-icon">😎</span>
+            <span class="login-name">Ankit</span>
+            <span class="login-hint">The Brave Soul</span>
+          </button>
+
+          <button
+            class="login-btn tushar-btn"
+            id="tusharLogin"
+            data-user="tushar"
+          >
+            <span class="login-icon">🤓</span>
+            <span class="login-name">Tushar</span>
+            <span class="login-hint">The Fearless Legend</span>
+          </button>
+        </div>
+
+        <p class="login-footer">Made with 😈 by <strong>Govind</strong></p>
+      </div>
+    </div>
+
+    <!-- Main Prank Area -->
+    <div class="main-area" id="mainArea" style="display: none">
+      <!-- Header -->
+      <header class="header">
+        <h1 class="main-title" id="mainTitle">Welcome, Friend!</h1>
+        <p class="subtitle" id="subtitle">
+          Everything here works perfectly. Trust us. 😇
+        </p>
+      </header>
+
+      <!-- Fake Loading Section -->
+      <section class="section loading-section">
+        <h2>⏳ Loading Something Important...</h2>
+        <div class="loading-container">
+          <div class="loading-bar">
+            <div class="loading-progress" id="loadingProgress"></div>
+          </div>
+          <span class="loading-text" id="loadingText">0%</span>
+        </div>
+        <p class="loading-message" id="loadingMessage">
+          Preparing your experience...
+        </p>
+      </section>
+
+      <!-- Dodge Button Section -->
+      <section class="section dodge-section">
+        <h2>🎯 Click the Button to Win!</h2>
+        <p>It's super easy. Just click it. Go on.</p>
+        <div class="dodge-container" id="dodgeContainer">
+          <button class="dodge-btn" id="dodgeBtn">Click Me to Win! 🏆</button>
+        </div>
+        <p class="dodge-hint" id="dodgeHint"></p>
+      </section>
+
+      <!-- Countdown Timer Section -->
+      <section class="section countdown-section">
+        <h2>⏱️ Time Until Something Happens</h2>
+        <div class="countdown-display" id="countdownDisplay">00:00:10</div>
+        <p class="countdown-message" id="countdownMessage">Almost there...</p>
+      </section>
+
+      <!-- Drifting Text Section -->
+      <section class="section drift-section">
+        <h2>📜 Important Information</h2>
+        <div class="drift-container">
+          <p class="drift-text" id="driftText">
+            This is very important information that you definitely need to
+            read...
+          </p>
+        </div>
+      </section>
+
+      <!-- Button Hell Section -->
+      <section class="section button-hell">
+        <h2>🔘 Select an Option</h2>
+        <p>Choose wisely. Or don't. It doesn't matter.</p>
+        <div class="button-grid">
+          <button class="hell-btn" data-action="option1">Option A</button>
+          <button class="hell-btn" data-action="option2">Option B</button>
+          <button class="hell-btn" data-action="option3">Option C</button>
+          <button class="hell-btn" data-action="option4">
+            All of the Above
+          </button>
+          <button class="hell-btn" data-action="option5">
+            None of the Above
+          </button>
+          <button class="hell-btn" data-action="option6">I Don't Know</button>
+        </div>
+      </section>
+
+      <!-- Fake Form Section -->
+      <section class="section form-section">
+        <h2>📝 Complete This Form</h2>
+        <form class="fake-form" id="fakeForm">
+          <div class="form-group">
+            <label>Your Name (we already know it 😏)</label>
+            <input type="text" id="fakeName" placeholder="Type here..." />
+          </div>
+          <div class="form-group">
+            <label>Your Favorite Color (we'll ignore this)</label>
+            <select id="fakeColor">
+              <option value="">Select...</option>
+              <option value="red">Red (wrong choice)</option>
+              <option value="blue">Blue (also wrong)</option>
+              <option value="green">Green (definitely wrong)</option>
+              <option value="none">I refuse to choose (rebel!)</option>
+            </select>
+          </div>
+          <button type="submit" class="submit-btn" id="submitBtn">
+            Submit (Good Luck)
+          </button>
+        </form>
+      </section>
+
+      <!-- Rage Quit Section -->
+      <section class="section rage-section">
+        <h2>😤 Had Enough?</h2>
+        <button class="rage-quit-btn" id="rageQuitBtn">🚪 RAGE QUIT 🚪</button>
+        <p class="rage-hint">This button definitely works. 100%. Guaranteed.</p>
+      </section>
+
+      <!-- Achievement Display -->
+      <div class="achievement-container" id="achievementContainer"></div>
+    </div>
+
+    <!-- Popup Container -->
+    <div class="popup-overlay" id="popupOverlay">
+      <div class="popup-card" id="popupCard">
+        <h3 class="popup-title" id="popupTitle">Are you sure?</h3>
+        <p class="popup-message" id="popupMessage">
+          This action cannot be undone. Maybe.
+        </p>
+        <div class="popup-buttons">
+          <button class="popup-btn popup-yes" id="popupYes">Yes</button>
+          <button class="popup-btn popup-no" id="popupNo">No</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fake Error Popup -->
+    <div class="error-overlay" id="errorOverlay">
+      <div class="error-card">
+        <div class="error-icon">⚠️</div>
+        <h3 class="error-title" id="errorTitle">Error 404</h3>
+        <p class="error-message" id="errorMessage">
+          Your patience was not found.
+        </p>
+        <button class="error-btn" id="errorBtn">OK (this won't help)</button>
+      </div>
+    </div>
+
+    <!-- Victory Screen -->
+    <div class="victory-screen" id="victoryScreen">
+      <div class="victory-content">
+        <h1 class="victory-title">🏆 CONGRATULATIONS! 🏆</h1>
+        <div class="victory-icon">👑</div>
+        <h2 class="victory-subtitle" id="victorySubtitle">
+          You Survived This Website!
+        </h2>
+        <p class="victory-message">
+          You're officially too patient. <br />
+          This website was handcrafted with love and chaos by
+          <strong>Govind</strong> 😈
+        </p>
+        <div class="victory-stats" id="victoryStats"></div>
+        <button class="victory-btn" id="restartBtn">
+          🔄 Do It Again (Why Would You?)
+        </button>
+        <p class="victory-footer">Happy trolling! Share this with others 😂</p>
+      </div>
+      <div class="confetti-container" id="confettiContainer"></div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

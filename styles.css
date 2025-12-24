@@ -1,0 +1,1503 @@
+/* ========================================
+   ULTIMATE PRANK WEBSITE STYLES
+   Made with 😈 by Govind
+   ======================================== */
+
+/* CSS Variables */
+:root {
+  --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --chaos-gradient: linear-gradient(45deg, #f093fb, #f5576c, #4facfe, #00f2fe);
+  --neon-pink: #ff006e;
+  --neon-blue: #00f5ff;
+  --neon-green: #39ff14;
+  --neon-yellow: #fff700;
+  --neon-purple: #bf00ff;
+  --dark-bg: #0a0a1a;
+  --card-bg: rgba(255, 255, 255, 0.1);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --text-primary: #ffffff;
+  --text-secondary: #b8b8d1;
+  --shadow-glow: 0 0 30px rgba(102, 126, 234, 0.5);
+}
+
+/* Reset & Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Comic Neue", cursive, sans-serif;
+  background: var(--dark-bg);
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  cursor: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><text y="28" font-size="28">🎯</text></svg>')
+      16 16,
+    auto;
+}
+
+/* Background Particles */
+.particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  background: radial-gradient(
+      circle at 20% 80%,
+      rgba(120, 0, 255, 0.3) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 80% 20%,
+      rgba(255, 0, 128, 0.3) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 40% 40%,
+      rgba(0, 255, 255, 0.2) 0%,
+      transparent 40%
+    ),
+    var(--dark-bg);
+  animation: backgroundPulse 10s ease-in-out infinite;
+}
+
+@keyframes backgroundPulse {
+  0%,
+  100% {
+    filter: hue-rotate(0deg);
+  }
+  50% {
+    filter: hue-rotate(30deg);
+  }
+}
+
+/* ========================================
+   MUTE BUTTON
+   ======================================== */
+.mute-btn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid var(--neon-blue);
+  background: rgba(0, 0, 0, 0.7);
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 15px var(--neon-blue);
+}
+
+.mute-btn:hover {
+  transform: scale(1.2) rotate(15deg);
+  box-shadow: 0 0 30px var(--neon-blue), 0 0 60px var(--neon-pink);
+}
+
+.mute-btn.muted {
+  border-color: var(--neon-pink);
+  box-shadow: 0 0 15px var(--neon-pink);
+}
+
+/* ========================================
+   STATS PANEL
+   ======================================== */
+.stats-panel {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 9998;
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid var(--glass-border);
+  border-radius: 15px;
+  padding: 15px 20px;
+  backdrop-filter: blur(10px);
+  font-family: "Press Start 2P", monospace;
+  font-size: 0.6rem;
+  box-shadow: var(--shadow-glow);
+}
+
+.stat {
+  margin: 8px 0;
+  color: var(--neon-green);
+  text-shadow: 0 0 10px var(--neon-green);
+}
+
+.stat span {
+  color: var(--neon-yellow);
+}
+
+/* ========================================
+   CURSOR TOOLTIP
+   ======================================== */
+.cursor-tooltip {
+  position: fixed;
+  pointer-events: none;
+  z-index: 10000;
+  background: linear-gradient(135deg, var(--neon-pink), var(--neon-purple));
+  color: white;
+  padding: 10px 15px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  box-shadow: 0 5px 20px rgba(255, 0, 110, 0.5);
+  opacity: 0;
+  transition: opacity 0.3s;
+  white-space: nowrap;
+}
+
+.cursor-tooltip.visible {
+  opacity: 1;
+}
+
+/* ========================================
+   LOGIN SCREEN
+   ======================================== */
+.login-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  background: var(--dark-bg);
+}
+
+.login-card {
+  background: var(--card-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 30px;
+  padding: 50px 40px;
+  text-align: center;
+  backdrop-filter: blur(20px);
+  box-shadow: var(--shadow-glow);
+  max-width: 500px;
+  width: 90%;
+  animation: floatIn 1s ease-out;
+}
+
+@keyframes floatIn {
+  from {
+    opacity: 0;
+    transform: translateY(50px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.login-title {
+  font-family: "Bangers", cursive;
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  background: var(--chaos-gradient);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 3s ease infinite;
+}
+
+@keyframes gradientShift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.login-subtitle {
+  color: var(--text-secondary);
+  margin-bottom: 30px;
+  font-size: 1.1rem;
+}
+
+.login-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.login-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 25px;
+  border: 2px solid transparent;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+}
+
+.login-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transition: left 0.5s;
+}
+
+.login-btn:hover::before {
+  left: 100%;
+}
+
+.rohit-btn {
+  background: linear-gradient(135deg, #ff6b6b, #ee5a5a);
+  border-color: #ff6b6b;
+}
+
+.rohit-btn:hover {
+  transform: scale(1.05) rotate(-2deg);
+  box-shadow: 0 10px 40px rgba(255, 107, 107, 0.5);
+}
+
+.ankit-btn {
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
+  border-color: #4facfe;
+}
+
+.ankit-btn:hover {
+  transform: scale(1.05) rotate(2deg);
+  box-shadow: 0 10px 40px rgba(79, 172, 254, 0.5);
+}
+
+.tushar-btn {
+  background: linear-gradient(135deg, #11998e, #38ef7d);
+  border-color: #38ef7d;
+}
+
+.tushar-btn:hover {
+  transform: scale(1.05) rotate(-1deg);
+  box-shadow: 0 10px 40px rgba(56, 239, 125, 0.5);
+}
+
+.login-icon {
+  font-size: 3rem;
+  margin-bottom: 10px;
+  animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.login-name {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.login-hint {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.login-footer {
+  margin-top: 30px;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.login-footer strong {
+  color: var(--neon-pink);
+}
+
+/* ========================================
+   MAIN AREA
+   ======================================== */
+.main-area {
+  padding: 100px 20px 50px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.main-title {
+  font-family: "Bangers", cursive;
+  font-size: 3rem;
+  margin-bottom: 15px;
+  text-shadow: 0 0 20px var(--neon-pink), 0 0 40px var(--neon-purple);
+  animation: titleGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes titleGlow {
+  from {
+    text-shadow: 0 0 20px var(--neon-pink), 0 0 40px var(--neon-purple);
+  }
+  to {
+    text-shadow: 0 0 30px var(--neon-blue), 0 0 60px var(--neon-green);
+  }
+}
+
+.subtitle {
+  color: var(--text-secondary);
+  font-size: 1.2rem;
+}
+
+/* ========================================
+   SECTIONS
+   ======================================== */
+.section {
+  background: var(--card-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 25px;
+  padding: 35px;
+  margin-bottom: 30px;
+  backdrop-filter: blur(10px);
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.section::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    from 0deg,
+    transparent,
+    var(--neon-pink),
+    transparent 30%
+  );
+  animation: rotateBorder 4s linear infinite;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.section:hover::after {
+  opacity: 0.3;
+}
+
+.section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
+}
+
+@keyframes rotateBorder {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.section h2 {
+  font-family: "Bangers", cursive;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: var(--neon-yellow);
+  text-shadow: 0 0 10px var(--neon-yellow);
+  position: relative;
+  z-index: 1;
+}
+
+.section p {
+  position: relative;
+  z-index: 1;
+}
+
+/* ========================================
+   LOADING BAR
+   ======================================== */
+.loading-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin: 20px 0;
+  position: relative;
+  z-index: 1;
+}
+
+.loading-bar {
+  flex: 1;
+  height: 30px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  overflow: hidden;
+  border: 2px solid var(--glass-border);
+}
+
+.loading-progress {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(
+    90deg,
+    var(--neon-green),
+    var(--neon-blue),
+    var(--neon-pink)
+  );
+  background-size: 200% 100%;
+  border-radius: 15px;
+  transition: width 0.3s ease;
+  animation: shimmer 2s linear infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.loading-text {
+  font-family: "Press Start 2P", monospace;
+  font-size: 1rem;
+  color: var(--neon-green);
+  min-width: 50px;
+  text-align: right;
+}
+
+.loading-message {
+  font-style: italic;
+  color: var(--text-secondary);
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* ========================================
+   DODGE BUTTON
+   ======================================== */
+.dodge-container {
+  height: 150px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0;
+  z-index: 1;
+}
+
+.dodge-btn {
+  position: absolute;
+  padding: 20px 40px;
+  font-size: 1.3rem;
+  font-family: "Bangers", cursive;
+  background: linear-gradient(135deg, var(--neon-green), #00d68f);
+  border: none;
+  border-radius: 50px;
+  color: #000;
+  cursor: pointer;
+  transition: all 0.1s ease;
+  box-shadow: 0 5px 20px rgba(57, 255, 20, 0.4);
+  z-index: 2;
+}
+
+.dodge-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 10px 40px rgba(57, 255, 20, 0.6);
+}
+
+.dodge-hint {
+  font-size: 0.9rem;
+  color: var(--neon-pink);
+  text-align: center;
+  min-height: 24px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ========================================
+   COUNTDOWN
+   ======================================== */
+.countdown-display {
+  font-family: "Press Start 2P", monospace;
+  font-size: 2.5rem;
+  text-align: center;
+  margin: 20px 0;
+  color: var(--neon-blue);
+  text-shadow: 0 0 20px var(--neon-blue);
+  animation: pulse 1s ease-in-out infinite;
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.countdown-message {
+  text-align: center;
+  color: var(--text-secondary);
+  font-style: italic;
+  position: relative;
+  z-index: 1;
+}
+
+/* ========================================
+   DRIFTING TEXT
+   ======================================== */
+.drift-container {
+  height: 100px;
+  overflow: hidden;
+  position: relative;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 15px;
+  padding: 20px;
+  z-index: 1;
+}
+
+.drift-text {
+  position: absolute;
+  white-space: nowrap;
+  animation: drift 15s linear infinite;
+  font-size: 1.2rem;
+  color: var(--neon-yellow);
+}
+
+@keyframes drift {
+  0% {
+    left: 100%;
+    top: 20px;
+  }
+  25% {
+    left: 50%;
+    top: 50px;
+  }
+  50% {
+    left: 0%;
+    top: 10px;
+  }
+  75% {
+    left: 50%;
+    top: 60px;
+  }
+  100% {
+    left: 100%;
+    top: 20px;
+  }
+}
+
+/* ========================================
+   BUTTON HELL
+   ======================================== */
+.button-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.hell-btn {
+  padding: 15px 25px;
+  font-size: 1rem;
+  font-family: "Comic Neue", cursive;
+  font-weight: bold;
+  border: 2px solid var(--glass-border);
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.hell-btn::before {
+  content: "😈";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  font-size: 2rem;
+  transition: transform 0.3s;
+  opacity: 0;
+}
+
+.hell-btn:hover {
+  background: linear-gradient(135deg, var(--neon-pink), var(--neon-purple));
+  transform: scale(1.05) rotate(var(--rotate, 0deg));
+  border-color: var(--neon-pink);
+}
+
+.hell-btn:hover::before {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+}
+
+.hell-btn:nth-child(1) {
+  --rotate: -3deg;
+}
+.hell-btn:nth-child(2) {
+  --rotate: 2deg;
+}
+.hell-btn:nth-child(3) {
+  --rotate: -2deg;
+}
+.hell-btn:nth-child(4) {
+  --rotate: 3deg;
+}
+.hell-btn:nth-child(5) {
+  --rotate: -1deg;
+}
+.hell-btn:nth-child(6) {
+  --rotate: 2deg;
+}
+
+.hell-btn:active {
+  transform: scale(0.95);
+}
+
+/* ========================================
+   FAKE FORM
+   ======================================== */
+.fake-form {
+  position: relative;
+  z-index: 1;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 15px;
+  border: 2px solid var(--glass-border);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  color: white;
+  font-size: 1rem;
+  font-family: "Comic Neue", cursive;
+  transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--neon-blue);
+  box-shadow: 0 0 20px rgba(0, 245, 255, 0.3);
+  animation: inputShake 0.5s ease;
+}
+
+@keyframes inputShake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
+}
+
+.form-group select option {
+  background: var(--dark-bg);
+  color: white;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 18px;
+  font-size: 1.2rem;
+  font-family: "Bangers", cursive;
+  background: linear-gradient(135deg, var(--neon-purple), var(--neon-pink));
+  border: none;
+  border-radius: 15px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.submit-btn::after {
+  content: "✨";
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  font-size: 1.5rem;
+  opacity: 0;
+  transition: opacity 0.3s, right 0.3s;
+}
+
+.submit-btn:hover {
+  transform: scale(1.02);
+  box-shadow: 0 10px 30px rgba(191, 0, 255, 0.4);
+}
+
+.submit-btn:hover::after {
+  opacity: 1;
+  right: 30px;
+}
+
+/* ========================================
+   RAGE QUIT
+   ======================================== */
+.rage-section {
+  text-align: center;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 0, 0, 0.1),
+    rgba(255, 100, 0, 0.1)
+  );
+}
+
+.rage-quit-btn {
+  padding: 25px 60px;
+  font-size: 1.5rem;
+  font-family: "Bangers", cursive;
+  background: linear-gradient(135deg, #ff4444, #cc0000);
+  border: 3px solid #ff6666;
+  border-radius: 20px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  animation: rageGlow 1s ease-in-out infinite alternate;
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes rageGlow {
+  from {
+    box-shadow: 0 0 20px rgba(255, 68, 68, 0.5);
+  }
+  to {
+    box-shadow: 0 0 40px rgba(255, 68, 68, 0.8), 0 0 60px rgba(255, 0, 0, 0.4);
+  }
+}
+
+.rage-quit-btn:hover {
+  transform: scale(1.1) rotate(-3deg);
+  background: linear-gradient(135deg, #ff6666, #ff0000);
+}
+
+.rage-quit-btn:active {
+  transform: scale(0.95);
+}
+
+.rage-hint {
+  margin-top: 15px;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-style: italic;
+  position: relative;
+  z-index: 1;
+}
+
+/* ========================================
+   ACHIEVEMENTS
+   ======================================== */
+.achievement-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9000;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 350px;
+}
+
+.achievement {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 215, 0, 0.9),
+    rgba(255, 165, 0, 0.9)
+  );
+  color: #000;
+  padding: 15px 20px;
+  border-radius: 15px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  animation: achievementSlide 0.5s ease-out,
+    achievementFade 0.5s ease-out 3s forwards;
+  box-shadow: 0 5px 20px rgba(255, 215, 0, 0.5);
+}
+
+@keyframes achievementSlide {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes achievementFade {
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.achievement-icon {
+  font-size: 1.5rem;
+}
+
+.achievement-text {
+  flex: 1;
+}
+
+/* ========================================
+   POPUP OVERLAY
+   ======================================== */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9500;
+  backdrop-filter: blur(5px);
+}
+
+.popup-overlay.active {
+  display: flex;
+}
+
+.popup-card {
+  background: linear-gradient(135deg, #1a1a2e, #16213e);
+  border: 2px solid var(--neon-purple);
+  border-radius: 25px;
+  padding: 40px;
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+  animation: popupBounce 0.5s ease-out;
+  box-shadow: 0 0 50px rgba(191, 0, 255, 0.3);
+}
+
+@keyframes popupBounce {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.popup-title {
+  font-family: "Bangers", cursive;
+  font-size: 2rem;
+  margin-bottom: 15px;
+  color: var(--neon-yellow);
+}
+
+.popup-message {
+  margin-bottom: 25px;
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+}
+
+.popup-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.popup-btn {
+  padding: 12px 35px;
+  font-size: 1rem;
+  font-family: "Comic Neue", cursive;
+  font-weight: bold;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.popup-yes {
+  background: linear-gradient(135deg, var(--neon-green), #00d68f);
+  color: #000;
+}
+
+.popup-no {
+  background: linear-gradient(135deg, var(--neon-pink), #ff4444);
+  color: white;
+}
+
+.popup-btn:hover {
+  transform: scale(1.1);
+}
+
+/* ========================================
+   ERROR OVERLAY
+   ======================================== */
+.error-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9600;
+}
+
+.error-overlay.active {
+  display: flex;
+}
+
+.error-card {
+  background: linear-gradient(135deg, #2d1f1f, #1f1f2d);
+  border: 3px solid #ff4444;
+  border-radius: 25px;
+  padding: 50px;
+  text-align: center;
+  max-width: 450px;
+  width: 90%;
+  animation: errorShake 0.5s ease-out;
+}
+
+@keyframes errorShake {
+  0%,
+  100% {
+    transform: translateX(0) rotate(0);
+  }
+  20% {
+    transform: translateX(-20px) rotate(-5deg);
+  }
+  40% {
+    transform: translateX(20px) rotate(5deg);
+  }
+  60% {
+    transform: translateX(-20px) rotate(-5deg);
+  }
+  80% {
+    transform: translateX(20px) rotate(5deg);
+  }
+}
+
+.error-icon {
+  font-size: 4rem;
+  margin-bottom: 20px;
+  animation: errorPulse 0.5s ease-in-out infinite;
+}
+
+@keyframes errorPulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+.error-title {
+  font-family: "Press Start 2P", monospace;
+  font-size: 1.5rem;
+  color: #ff4444;
+  margin-bottom: 15px;
+}
+
+.error-message {
+  color: var(--text-secondary);
+  margin-bottom: 25px;
+  font-size: 1.1rem;
+}
+
+.error-btn {
+  padding: 15px 40px;
+  font-size: 1rem;
+  background: #ff4444;
+  border: none;
+  border-radius: 25px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.error-btn:hover {
+  background: #ff6666;
+  transform: scale(1.05);
+}
+
+/* ========================================
+   VICTORY SCREEN
+   ======================================== */
+.victory-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  overflow: hidden;
+}
+
+.victory-screen.active {
+  display: flex;
+}
+
+.victory-content {
+  text-align: center;
+  padding: 40px;
+  position: relative;
+  z-index: 1;
+  animation: victoryFadeIn 1s ease-out;
+}
+
+@keyframes victoryFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.victory-title {
+  font-family: "Bangers", cursive;
+  font-size: 3.5rem;
+  background: linear-gradient(45deg, #ffd700, #ffaa00, #ffd700);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: goldShimmer 2s ease-in-out infinite;
+  margin-bottom: 20px;
+}
+
+@keyframes goldShimmer {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.victory-icon {
+  font-size: 6rem;
+  animation: crownBounce 1s ease-in-out infinite;
+}
+
+@keyframes crownBounce {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-5deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(5deg);
+  }
+}
+
+.victory-subtitle {
+  font-size: 2rem;
+  color: var(--neon-green);
+  margin: 20px 0;
+}
+
+.victory-message {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  margin-bottom: 30px;
+  line-height: 1.8;
+}
+
+.victory-stats {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 20px;
+  margin: 20px 0;
+  font-family: "Press Start 2P", monospace;
+  font-size: 0.7rem;
+  color: var(--neon-yellow);
+}
+
+.victory-btn {
+  padding: 20px 50px;
+  font-size: 1.3rem;
+  font-family: "Bangers", cursive;
+  background: linear-gradient(135deg, var(--neon-purple), var(--neon-pink));
+  border: none;
+  border-radius: 30px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 20px 0;
+}
+
+.victory-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 10px 40px rgba(191, 0, 255, 0.5);
+}
+
+.victory-footer {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-top: 20px;
+}
+
+/* Confetti */
+.confetti-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.confetti {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  top: -10px;
+  animation: confettiFall 3s linear forwards;
+}
+
+@keyframes confettiFall {
+  to {
+    top: 100%;
+    transform: rotate(720deg);
+  }
+}
+
+/* ========================================
+   PAGE SHAKE
+   ======================================== */
+body.shake {
+  animation: pageShake 0.5s ease-in-out;
+}
+
+@keyframes pageShake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  10% {
+    transform: translateX(-10px) rotate(-1deg);
+  }
+  20% {
+    transform: translateX(10px) rotate(1deg);
+  }
+  30% {
+    transform: translateX(-10px) rotate(-1deg);
+  }
+  40% {
+    transform: translateX(10px) rotate(1deg);
+  }
+  50% {
+    transform: translateX(-10px) rotate(-1deg);
+  }
+  60% {
+    transform: translateX(10px) rotate(1deg);
+  }
+  70% {
+    transform: translateX(-10px) rotate(-1deg);
+  }
+  80% {
+    transform: translateX(10px) rotate(1deg);
+  }
+  90% {
+    transform: translateX(-10px) rotate(-1deg);
+  }
+}
+
+/* ========================================
+   EXTRA HOVER MAYHEM
+   ======================================== */
+
+/* Text that runs away on hover */
+.runaway-text {
+  display: inline-block;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.runaway-text:hover {
+  transform: translateX(calc(var(--run-x, 1) * 100px))
+    translateY(calc(var(--run-y, 0) * 50px)) rotate(var(--run-r, 15deg));
+}
+
+/* Buttons that grow uncontrollably */
+.grow-btn {
+  transition: all 0.3s ease;
+}
+
+.grow-btn:hover {
+  transform: scale(2);
+  z-index: 100;
+}
+
+/* Buttons that shrink to nothing */
+.shrink-btn:hover {
+  transform: scale(0.1);
+  opacity: 0.1;
+}
+
+/* Buttons that spin wildly */
+.spin-btn:hover {
+  animation: wildSpin 0.5s linear infinite;
+}
+
+@keyframes wildSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Rainbow text on hover */
+.rainbow-hover:hover {
+  animation: rainbowText 0.5s linear infinite;
+}
+
+@keyframes rainbowText {
+  0% {
+    color: #ff0000;
+  }
+  16% {
+    color: #ff8800;
+  }
+  33% {
+    color: #ffff00;
+  }
+  50% {
+    color: #00ff00;
+  }
+  66% {
+    color: #0088ff;
+  }
+  83% {
+    color: #8800ff;
+  }
+  100% {
+    color: #ff0000;
+  }
+}
+
+/* Fake disabled state */
+.fake-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.fake-disabled:hover {
+  opacity: 1;
+  cursor: pointer;
+  animation: gotcha 0.3s ease;
+}
+
+@keyframes gotcha {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+@media (max-width: 768px) {
+  .stats-panel {
+    top: auto;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 15px;
+    padding: 10px 15px;
+  }
+
+  .stat {
+    margin: 0;
+    font-size: 0.5rem;
+  }
+
+  .login-title {
+    font-size: 2rem;
+  }
+
+  .login-btn {
+    padding: 20px;
+  }
+
+  .main-title {
+    font-size: 2rem;
+  }
+
+  .section {
+    padding: 25px 20px;
+  }
+
+  .countdown-display {
+    font-size: 1.5rem;
+  }
+
+  .victory-title {
+    font-size: 2rem;
+  }
+
+  .victory-icon {
+    font-size: 4rem;
+  }
+
+  .button-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .achievement-container {
+    left: 10px;
+    right: 10px;
+    max-width: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-card {
+    padding: 30px 20px;
+  }
+
+  .button-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .popup-buttons {
+    flex-direction: column;
+  }
+
+  .rage-quit-btn {
+    padding: 20px 40px;
+    font-size: 1.2rem;
+  }
+}
+
+/* ========================================
+   UTILITY CLASSES
+   ======================================== */
+.hidden {
+  display: none !important;
+}
+
+.no-scroll {
+  overflow: hidden;
+}
+
+/* Glitch effect */
+.glitch {
+  animation: glitch 0.3s infinite;
+}
+
+@keyframes glitch {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  80% {
+    transform: translate(2px, -2px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+/* Blink effect */
+.blink {
+  animation: blink 0.5s step-end infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Float effect */
+.float {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
